@@ -1,7 +1,7 @@
 export type TagCategory =
   | 'CHARACTER'
   | 'SETTING'
-  | 'EMOTION'
+  | 'SUBSTANCE'
   | 'ACTION'
   | 'ANIMAL'
   | 'THEME'
