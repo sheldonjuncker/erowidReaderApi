@@ -82,11 +82,11 @@ const substanceRulesObject = {
     new WordRule('pot'),
   ],
   hashish: [new WordRule('hash'), new WordRule('hashish')],
-  harmalas: ReportSubstance.HARMALAALKALOIDS,
-  harmaline: ReportSubstance.HARMALINE,
-  harmine: ReportSubstance.HARMINE,
-  tetrahydroharmine: ReportSubstance.TETRAHYDROHARMINE,
-  syrianRue: ReportSubstance.SYRIANRUE,
+  harmalas: [new WordRule('harmala'), new WordRule('harmalas')],
+  harmaline: [new WordRule('harmaline')],
+  harmine: [new WordRule('harmine')],
+  tetrahydroharmine: [new WordRule('tetrahydroharmine')],
+  syrianRue: [new PhraseRule('syrian rue')],
 };
 
 const substanceRules = new RuleMap(
