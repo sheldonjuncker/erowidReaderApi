@@ -1216,6 +1216,13 @@ compare-versions@^3.6.0:
   resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-3.6.0.tgz#1a5689913685e5a87637b8d3ffca75514ec41d62"
   integrity sha512-W6Af2Iw1z4CB7q4uU4hv646dW9GQuBM+YpC0UvUCWSD8w90SJjp+ujJuXaEMtAXBtSqGfMPuFOVn4/+FlaqfBA==
 
+compromise@^13.11.3:
+  version "13.11.3"
+  resolved "https://registry.yarnpkg.com/compromise/-/compromise-13.11.3.tgz#3f6b687fbefdbd1ef674f263f6e5c06b29c324d9"
+  integrity sha512-oKYButHtXcDyEe2et5XlniFWyFTpDOy3z7zB501EEgTN9xeZHIib1Xq4AOSJw6HCZmwGHh1nx3MGy/MbGHFtWQ==
+  dependencies:
+    efrt-unpack "2.2.0"
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -1491,6 +1498,11 @@ ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
+
+efrt-unpack@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/efrt-unpack/-/efrt-unpack-2.2.0.tgz#b05dbec0fb8cb346a27840e00c969df9c72fee52"
+  integrity sha512-9xUSSj7qcUxz+0r4X3+bwUNttEfGfK5AH+LVa1aTpqdAfrN5VhROYCfcF+up4hp5OL7IUKcZJJrzAGipQRDoiQ==
 
 emoji-regex@^7.0.1:
   version "7.0.3"

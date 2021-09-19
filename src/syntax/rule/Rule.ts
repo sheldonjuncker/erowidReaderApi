@@ -1,6 +1,5 @@
-import SyntaxTree from '../syntax/SyntaxTree';
-import SyntaxTreeBranch from '../syntax/SyntaxTreeBranch';
-
+import SyntaxTree from '../SyntaxTree';
+import SyntaxTreeBranch from '../SyntaxTreeBranch';
 /**
  * @class Rule
  *

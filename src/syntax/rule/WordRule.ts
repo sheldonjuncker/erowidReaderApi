@@ -1,7 +1,6 @@
 import Rule from './Rule';
-import SyntaxTree from '../nlp/syntax/SyntaxTree';
-import SyntaxTreeBranch from '../nlp/syntax/SyntaxTreeBranch';
-
+import SyntaxTree from '../SyntaxTree';
+import SyntaxTreeBranch from '../SyntaxTreeBranch';
 /**
  * @class WordRule
  *

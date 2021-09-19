@@ -1,7 +1,6 @@
 import Rule from './Rule';
-import SyntaxTree from '../nlp/syntax/SyntaxTree';
-import SyntaxTreeBranch from '../nlp/syntax/SyntaxTreeBranch';
-
+import SyntaxTree from '../SyntaxTree';
+import SyntaxTreeBranch from '../SyntaxTreeBranch';
 /**
  * Accepts a list of rules and applies them to the branches in sequence until
  * it finds a match.

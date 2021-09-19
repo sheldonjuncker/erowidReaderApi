@@ -17,14 +17,17 @@ const typeDefs = gql`
     gender: String
     intensity: IntensityRange
     language: String
-    substances: [String]
+    substance: String
+    combinationOne: String
+    combinationTwo: String
     dose: DosingInfo
     route: String
     activity: String
+    limit: Int
   }
 
   type Query {
-    parseReportQuery: [ReportQuery]
+    parseReportQuery(text: String!): ReportQuery
   }
 `;
 

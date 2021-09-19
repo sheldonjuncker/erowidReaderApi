@@ -1,4 +1,6 @@
 export const enum ReportSubstance {
+  NOTHING_ELSE = -3,
+  ANYTHING_ELSE = -2,
   ANY = 0,
   Α_PCYP = 907,
   Α_PHIP = 945,

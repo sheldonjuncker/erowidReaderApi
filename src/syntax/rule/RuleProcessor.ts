@@ -1,6 +1,6 @@
-import { Tag } from '../types/Tag';
+import { Tag } from '../tag/Tag';
 import RuleMap from './RuleMap';
-import SyntaxTree from '../nlp/syntax/SyntaxTree';
+import SyntaxTree from '../SyntaxTree';
 import { ObjectId } from 'bson';
 
 class RuleProcessor {

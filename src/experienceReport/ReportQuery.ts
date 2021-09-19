@@ -4,6 +4,8 @@ import ReportIntensityRange from './ReportIntensityRange';
 import { ReportLanguage } from './ReportLanguage';
 import { ReportAdministrationRoute } from './ReportAdministrationRoute';
 import { ReportSubstance } from './ReportSubstance';
+import { ReportActivity } from './ReportActivity';
+import SyntaxParser from '../syntax/SyntaxParser';
 
 class ReportQuery {
   protected title: string;
@@ -12,13 +14,21 @@ class ReportQuery {
   protected gender: ReportGender = ReportGender.ANY;
   protected intensity: ReportIntensityRange;
   protected language: ReportLanguage = ReportLanguage.ENGLISH;
-  protected substances: Array<ReportSubstance>;
+  protected substance: ReportSubstance = ReportSubstance.ANY;
+  protected combinationOne: ReportSubstance;
+  protected combinationTwo: ReportSubstance;
   protected dose: ReportDose;
   protected route: ReportAdministrationRoute = ReportAdministrationRoute.ANY;
-  protected activity: string;
+  protected activity: ReportActivity;
+  protected limit: number = 10;
   constructor() {}
 
-  async parseFromText(text: string) {}
+  async parseFromText(text: string) {
+    const syntaxParser = new SyntaxParser();
+    const syntaxTree = await syntaxParser.parse(text);
+    const tags = syntaxTree.getTags();
+    console.log('tags', tags);
+  }
 
   getTitle(): string {
     return this.title;
@@ -68,26 +78,59 @@ class ReportQuery {
     return this;
   }
 
-  getSubstances(): Array<string> {
-    return this.substances;
+  getSubstance(): ReportSubstance {
+    return this.substance;
   }
-  withSubstance(substance: string): ReportQuery {
-    if (!this.substances) {
-      this.substances = [];
-    }
-
-    if (this.substances && this.substances.length == 3) {
-      throw new Error('Erowid queries support at most 3 substances.');
-    }
-    this.substances.push(substance);
+  withSubstance(substance: ReportSubstance): ReportQuery {
+    this.substance = substance;
     return this;
   }
 
-  getGender(): ReportGender {
-    return this.gender;
+  getCombinationOne(): ReportSubstance {
+    return this.combinationOne;
   }
-  withGender(gender: ReportGender): ReportQuery {
-    this.gender = gender;
+  withCombinationOne(substance: ReportSubstance): ReportQuery {
+    this.combinationOne = substance;
+    return this;
+  }
+
+  getCombinationTwo(): ReportSubstance {
+    return this.combinationTwo;
+  }
+  withCombinationTwo(substance: ReportSubstance): ReportQuery {
+    this.combinationTwo = substance;
+    return this;
+  }
+
+  getDose(): ReportDose {
+    return this.dose;
+  }
+  withDose(dose: ReportDose): ReportQuery {
+    this.dose = dose;
+    return this;
+  }
+
+  getRoute(): ReportAdministrationRoute {
+    return this.route;
+  }
+  withRoute(route: ReportAdministrationRoute): ReportQuery {
+    this.route = route;
+    return this;
+  }
+
+  getActivity(): ReportActivity {
+    return this.activity;
+  }
+  withActivity(activity: ReportActivity): ReportQuery {
+    this.activity = activity;
+    return this;
+  }
+
+  getLimit(): number {
+    return this.limit;
+  }
+  withLimit(limit: number) {
+    this.limit = limit;
     return this;
   }
 }

@@ -1,4 +1,4 @@
-import { TagCategory } from '../types/TagCategory';
+import { TagCategory } from '../tag/TagCategory';
 import Rule from './Rule';
 
 class RuleMap {

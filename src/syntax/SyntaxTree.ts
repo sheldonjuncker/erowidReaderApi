@@ -1,8 +1,8 @@
 import SyntaxTreeBranch from './SyntaxTreeBranch';
-import WordRule from '../../../../dc-research/dc-research-tag/src/rules/WordRule';
+import WordRule from './rule/WordRule';
 import nlp from 'compromise';
-import { entityRules } from '../../../../dc-research/dc-research-tag/src/nlp/ner/EntityRules';
-import { Tag } from '../../../../dc-research/dc-research-tag/src/types/Tag';
+import { entityRules } from './rule/EntityRules';
+import { Tag } from './tag/Tag';
 import { ObjectId } from 'bson';
 
 /**
