@@ -1,0 +1,18 @@
+export const enum ReportAdministrationRoute {
+  ANY = -1,
+  ORAL = 1,
+  INSUFFLATED = 2,
+  BOOFED = 3,
+  INTRAMUSCULAR = 4,
+  INTRAVENOUS = 5,
+  SMOKED = 6,
+  INHALED = 7,
+  SUBCUTANEOUS = 8,
+  SUBLINGUAL = 9,
+  TRANSDERMAL = 10,
+  BUCCAL = 11,
+  VAGINAL = 12,
+  OCULAR = 13,
+  VAPED = 14,
+  ELECTRODE = 15,
+}

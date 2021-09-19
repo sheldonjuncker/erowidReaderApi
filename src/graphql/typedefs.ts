@@ -6,28 +6,21 @@ const typeDefs = gql`
     units: String!
     amount: Float!
   }
-  type DurationRange {
-    units: String!
-    amount: Float!
+  type IntensityRange {
+    min: Int!
+    max: Int!
   }
-  type Substance {
-    id: ID!
-    name: String!
-    description: String
-    resources: [Resource]
-    dosing: DosingInfo
-    duration: DurationRange
-    onset: DurationRange
-    effects: [String]
-    warnings: [String]
-  }
-
   type ReportQuery {
-    titleContains: 
+    title: String
+    body: String
+    author: String
+    gender: String
+    intensity: IntensityRange
+    language: String
     substances: [String]
     dose: DosingInfo
     route: String
-    technologies: [String]
+    activity: String
   }
 
   type Query {
