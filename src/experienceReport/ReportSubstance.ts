@@ -918,3 +918,48 @@ export const enum ReportSubstance {
   ZZMOOD_STABILIZERS = 937,
   ZZ_PSYCHEDELICS_2021JH = 936,
 }
+
+export const substanceEnumMap = {
+  //Hallucinogens
+  dmt: ReportSubstance.DMT,
+  lsd: ReportSubstance.LSD,
+  lsa: ReportSubstance.LSA,
+  mescaline: ReportSubstance.MESCALINE,
+  psilocin: ReportSubstance.PSILOCIN,
+  psilocybin: ReportSubstance.PSILOCYBIN,
+  mushrooms: ReportSubstance.MUSHROOMS,
+  ayahuasca: ReportSubstance.AYAHUASCA,
+  pharmahuasca: ReportSubstance.PHARMAHUASCA,
+  salvia: ReportSubstance.SALVIADIVINORUM, //too many options here
+  salvinorin: ReportSubstance.SALVINORINGROUP,
+  _5meoDMT: ReportSubstance._5_MEO_DMT,
+  mdma: ReportSubstance.MDMA,
+  harmalas: ReportSubstance.HARMALAALKALOIDS,
+  harmaline: ReportSubstance.HARMALINE,
+  harmine: ReportSubstance.HARMINE,
+  tetrahydroharmine: ReportSubstance.TETRAHYDROHARMINE,
+  syrianRue: ReportSubstance.SYRIANRUE,
+  ketamine: ReportSubstance.KETAMINE,
+  cannabis: ReportSubstance.CANNABIS,
+  hashish: ReportSubstance.CANNABIS_HASH,
+
+  //Stimulants
+  cocaine: ReportSubstance.COCAINE,
+  coca: ReportSubstance.COCA,
+  caffeine: ReportSubstance.CAFFEINE,
+  methamphetamine: ReportSubstance.METHAMPHETAMINE,
+  amphetamine: ReportSubstance.AMPHETAMINES,
+  methadone: ReportSubstance.METHADONE,
+  methaqualone: ReportSubstance.METHAQUALONE,
+  kratom: ReportSubstance.KRATOM,
+  nicotine: ReportSubstance.NICOTINE,
+  tobacco: ReportSubstance.TOBACCO,
+
+  //Depressants
+  alcohol: ReportSubstance.ALCOHOL,
+  benzos: ReportSubstance.BENZODIAZEPINES,
+  heroin: ReportSubstance.HEROIN,
+  opium: ReportSubstance.OPIUM,
+  opiate: ReportSubstance.OPIATES,
+  morphine: ReportSubstance.MORPHINE,
+};

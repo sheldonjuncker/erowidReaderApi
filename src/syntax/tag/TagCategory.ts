@@ -1,8 +1,8 @@
 export type TagCategory =
-  | 'CHARACTER'
-  | 'SETTING'
+  | 'GENDER'
+  | 'AGE'
   | 'SUBSTANCE'
-  | 'ACTION'
+  | 'ACTIVITY'
   | 'ANIMAL'
   | 'THEME'
   | 'DREAMTYPE'

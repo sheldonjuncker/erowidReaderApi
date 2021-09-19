@@ -1,14 +1,10 @@
-import ReportQuery from '../experienceReport/ReportQuery';
-import { ReportSubstance } from '../experienceReport/ReportSubstance';
-import { ReportAdministrationRoute } from '../experienceReport/ReportAdministrationRoute';
+import ReportQueryBuilder from '../experienceReport/ReportQueryBuilder';
 
 const resolvers = {
   Query: {
     parseReportQuery: async (_, { text }: { text: string }, __) => {
-      const reportCriteria = new ReportQuery();
-      await reportCriteria.parseFromText(text);
-      reportCriteria.withSubstance(ReportSubstance.DMT).withRoute(ReportAdministrationRoute.VAPED);
-      return reportCriteria;
+      const queryBuilder = new ReportQueryBuilder();
+      return queryBuilder.fromText(text);
     },
   },
 };

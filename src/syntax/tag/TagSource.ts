@@ -1,1 +1,1 @@
-export type TagSource = 'GOOGLE' | 'APP' | 'USER';
+export type TagSource = 'GOOGLE' | 'APP';

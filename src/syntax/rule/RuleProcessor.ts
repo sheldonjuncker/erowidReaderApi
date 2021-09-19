@@ -19,10 +19,10 @@ class RuleProcessor {
       const ruleList = ruleMap.getRule(ruleName);
       let count = 0;
       ruleList.forEach((rule) => {
-        const matches = rule.match(this.syntaxTree);
-        if (matches !== null) {
+        const ruleMatch = rule.match(this.syntaxTree);
+        if (ruleMatch.matched) {
           //For each branch (word/tag) matched, go mark it with it's category
-          matches.forEach((branch) => {
+          ruleMatch.matchedBranches.forEach((branch) => {
             this.tags.forEach((tag: any) => {
               if (
                 tag.lemma.toLowerCase() === branch.lemma.toLowerCase() &&
