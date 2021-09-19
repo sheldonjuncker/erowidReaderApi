@@ -942,6 +942,7 @@ export const substanceEnumMap = {
   ketamine: ReportSubstance.KETAMINE,
   cannabis: ReportSubstance.CANNABIS,
   hashish: ReportSubstance.CANNABIS_HASH,
+  pcp: ReportSubstance.PCP,
 
   //Stimulants
   cocaine: ReportSubstance.COCAINE,

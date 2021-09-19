@@ -10,7 +10,7 @@ class ReportQueryTagger {
     const ruleProcessor = new RuleProcessor(tags, syntaxTree);
     ruleProcessor.applyRules(substanceRules, false);
     ruleProcessor.applyRules(genderRules, false);
-    return tags.filter((tag: Tag) => tag.source == 'APP');
+    return ruleProcessor.getTags().filter((tag: Tag) => tag.source == 'APP');
   }
 }
 

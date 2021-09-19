@@ -6,27 +6,7 @@ import { ReportSubstance } from '../../experienceReport/ReportSubstance';
 
 //Mapping of themes to rules
 const substanceRulesObject = {
-  //Stimulants
-  cocaine: ReportSubstance.COCAINE,
-  coca: ReportSubstance.COCA,
-  caffeine: ReportSubstance.CAFFEINE,
-  methamphetamine: ReportSubstance.METHAMPHETAMINE,
-  amphetamine: ReportSubstance.AMPHETAMINES,
-  methadone: ReportSubstance.METHADONE,
-  methaqualone: ReportSubstance.METHAQUALONE,
-  kratom: ReportSubstance.KRATOM,
-  nicotine: ReportSubstance.NICOTINE,
-  tobacco: ReportSubstance.TOBACCO,
-
-  //Depressants
-  alcohol: ReportSubstance.ALCOHOL,
-  benzos: ReportSubstance.BENZODIAZEPINES,
-  heroin: ReportSubstance.HEROIN,
-  opium: ReportSubstance.OPIUM,
-  opiate: ReportSubstance.OPIATES,
-  morphine: ReportSubstance.MORPHINE,
-
-  //Hallucinogen
+  //Hallucinogens
   dmt: [
     new WordRule('dmt'),
     new WordRule('nndmt'),
@@ -87,6 +67,48 @@ const substanceRulesObject = {
   harmine: [new WordRule('harmine')],
   tetrahydroharmine: [new WordRule('tetrahydroharmine')],
   syrianRue: [new PhraseRule('syrian rue')],
+  pcp: [new WordRule('pcp'), new WordRule('phencyclidine'), new PhraseRule('angel dust')],
+
+  //Stimulants
+  cocaine: [new WordRule('cocaine')],
+  coca: [new WordRule('coca')],
+  caffeine: [new WordRule('caffeine')],
+  coffee: [new WordRule('coffee')],
+  methamphetamine: [
+    new WordRule('meth'),
+    new WordRule('speed'),
+    new WordRule('crack'),
+    new WordRule('methamphetamine'),
+  ],
+  amphetamine: [new WordRule('amphetamine'), new WordRule('ritalin'), new WordRule('adderall')],
+  methadone: [new WordRule('methadone')],
+  methaqualone: [new WordRule('methaqualone')],
+  kratom: [new WordRule('kratom')],
+  nicotine: [new WordRule('nicotine')],
+  tobacco: [new WordRule('tobacco')],
+
+  //Depressants
+  alcohol: [
+    new WordRule('alcohol'),
+    new WordRule('booze'),
+    new WordRule('ethanol'),
+    new WordRule('spirits'),
+  ],
+  benzos: [
+    new WordRule('benzo'),
+    new WordRule('benzos'),
+    new WordRule('benzodiazepine'),
+    new WordRule('xanax'),
+    new WordRule('valium'),
+    new WordRule('halcion'),
+    new WordRule('ativan'),
+    new WordRule('klonopin'),
+    new WordRule('tranquilizer'), //technically inaccurate
+  ],
+  heroin: [new WordRule('heroin'), new WordRule('heroine')],
+  opium: [new WordRule('opium')],
+  opiates: [new WordRule('opioid'), new WordRule('opiate')],
+  morphine: [new WordRule('morphine')],
 };
 
 const substanceRules = new RuleMap(
