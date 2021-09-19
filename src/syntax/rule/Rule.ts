@@ -1,5 +1,6 @@
 import SyntaxTree from '../SyntaxTree';
 import SyntaxTreeBranch from '../SyntaxTreeBranch';
+import RuleMatch from './RuleMatch';
 /**
  * @class Rule
  *
@@ -11,7 +12,7 @@ abstract class Rule {
    * Checks to see if the word rule is found in the syntax tree.
    * @param syntaxTree
    */
-  abstract match(syntaxTree: SyntaxTree): Array<SyntaxTreeBranch>;
+  abstract match(syntaxTree: SyntaxTree): RuleMatch;
 
   /**
    * Makes a shallow copy of the rule.

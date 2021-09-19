@@ -1216,6 +1216,28 @@ compare-versions@^3.6.0:
   resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-3.6.0.tgz#1a5689913685e5a87637b8d3ffca75514ec41d62"
   integrity sha512-W6Af2Iw1z4CB7q4uU4hv646dW9GQuBM+YpC0UvUCWSD8w90SJjp+ujJuXaEMtAXBtSqGfMPuFOVn4/+FlaqfBA==
 
+compromise-adjectives@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/compromise-adjectives/-/compromise-adjectives-0.0.7.tgz#258f00d365602fb54f34f856244937586a0c5b8d"
+  integrity sha512-d21VR5MgJy3W+0mIRJfLjAtt5yub64/chp4bItQOKpBv0qav1LWGNFtuItMegx/VilyFaMvLfmRg+iCXwgFlXA==
+  dependencies:
+    pure-md5 "0.1.13"
+
+compromise-ngrams@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/compromise-ngrams/-/compromise-ngrams-0.0.6.tgz#c0f4d7c5900f06bac4fcba89c8ade37b0458abe1"
+  integrity sha512-wK0ZkheHgnS4FHRuuS39saMQF+vjGYikURUuPfSP8LPETvPoQ6bDY8XRZu8H3fS2LZ3L0EyIEnH2Fks+bkF/Bg==
+
+compromise-numbers@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/compromise-numbers/-/compromise-numbers-1.4.0.tgz#22e545923243333bc1e8a2e82da2e922afb50400"
+  integrity sha512-3ceRpwZIWduVSMYn54ET1ELdI7bvXQk42uDwxffxiJBxgKCwcCfVbiLuTG62cI+qTHchwLDh4vp9i3WARXROFQ==
+
+compromise-sentences@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/compromise-sentences/-/compromise-sentences-0.3.0.tgz#61d34039323155bc20dad10f24340daaabf86e26"
+  integrity sha512-L6d5PXmmyPyWRMoJURYOM0yILhtV37zCOy9ZW8Xd6KgY+2qQBTwuokekaGL9MDpSH3/grRDL+AHKytYpGrTEmA==
+
 compromise@^13.11.3:
   version "13.11.3"
   resolved "https://registry.yarnpkg.com/compromise/-/compromise-13.11.3.tgz#3f6b687fbefdbd1ef674f263f6e5c06b29c324d9"
@@ -3427,6 +3449,11 @@ pupa@^2.0.1:
   integrity sha512-l1jNAspIBSFqbT+y+5FosojNpVpF94nlI+wDUpqP9enwOTfHx9f0gh5nB96vl+6yTpsJsypeNrwfzPrKuHB41A==
   dependencies:
     escape-goat "^2.0.0"
+
+pure-md5@0.1.13:
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/pure-md5/-/pure-md5-0.1.13.tgz#d55c1cd80dd1e634d5092c4245658694a79a9fe2"
+  integrity sha512-9O3tvDHGdKtoGdzI4OFr7FBfR1X9Gp/D0CXu8lRjlV9bf2YiB/w6FR+3ndOmEFlfdU9pHPvqJPPaDvqMXykEZA==
 
 qs@6.7.0:
   version "6.7.0"

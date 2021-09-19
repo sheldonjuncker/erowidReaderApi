@@ -141,22 +141,29 @@ class SyntaxTree {
           const rules = entityRules[entity];
           for (let j = 0; j < rules.length; j++) {
             const rule = rules[j];
-            const matchedBranches = rule.match(bonsai);
+            const ruleMatch = rule.match(bonsai);
             //We have an NER tag
-            if (matchedBranches !== null) {
+            if (ruleMatch.matched) {
+              const nerBranch = ruleMatch.matchedBranches[ruleMatch.matchedBranches.length - 1];
+              let nerWord;
+              if (ruleMatch.options.wordOverride) {
+                console.log('overriding word', ruleMatch.options.wordOverride);
+                nerWord = ruleMatch.options.wordOverride;
+              } else {
+                nerWord = ruleMatch.matchedBranches.map((nerBranch) => nerBranch.lemma).join(' ');
+              }
               //Combine the matched branches into a single tag
-              const nerWord = matchedBranches.map((nerBranch) => nerBranch.lemma).join(' ');
-              const nerBranch = matchedBranches[matchedBranches.length - 1];
               nerBranch.word = nerWord;
               nerBranch.lemma = nerWord;
+
               nerBranch.entityType = entity;
-              nerBranch.salience = matchedBranches.reduce(
+              nerBranch.salience = ruleMatch.matchedBranches.reduce(
                 (total, branch) => total + branch.salience,
                 0
               );
 
               //Set children to the new parent and vice versa
-              matchedBranches.forEach((branch) => {
+              ruleMatch.matchedBranches.forEach((branch) => {
                 if (branch == nerBranch) {
                   return;
                 }
@@ -170,7 +177,7 @@ class SyntaxTree {
               //Add the combined branches
               nerTaggedBranches.push(nerBranch);
               foundEntity = true;
-              while (matchedBranches.pop()) {
+              while (ruleMatch.matchedBranches.pop()) {
                 consolidatedBranches.shift();
               }
               break;

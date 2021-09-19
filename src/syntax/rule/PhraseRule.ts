@@ -1,6 +1,7 @@
 import Rule from './Rule';
 import SyntaxTree from '../SyntaxTree';
 import SyntaxTreeBranch from '../SyntaxTreeBranch';
+import RuleMatch from './RuleMatch';
 
 class PhraseRule extends Rule {
   public phrase: string;
@@ -11,12 +12,12 @@ class PhraseRule extends Rule {
   }
 
   //todo: refactor so that we can return the matched branches
-  match(syntaxTree: SyntaxTree): Array<SyntaxTreeBranch> {
+  match(syntaxTree: SyntaxTree): RuleMatch {
     const dreamText = syntaxTree.branches.map((branch) => branch.word.toLowerCase()).join(' ');
     if (dreamText.includes(this.phrase.toLowerCase())) {
-      return [];
+      return new RuleMatch(true, []);
     } else {
-      return null;
+      return new RuleMatch(false, []);
     }
   }
 

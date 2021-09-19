@@ -1,6 +1,8 @@
 import Rule from './Rule';
 import SyntaxTree from '../SyntaxTree';
 import SyntaxTreeBranch from '../SyntaxTreeBranch';
+import RuleMatch from './RuleMatch';
+import RuleMatchOptions from './RuleMatchOptions';
 /**
  * @class WordRule
  *
@@ -52,6 +54,7 @@ class WordRule extends Rule {
   public lemmatMatching = true;
   public negation = false;
   public regex: RegExp = null;
+  protected matchOptions: RuleMatchOptions = new RuleMatchOptions();
 
   /**
    * Sets the main word to check against.
@@ -104,6 +107,11 @@ class WordRule extends Rule {
     return this;
   }
 
+  withWordOverride(word: string): WordRule {
+    this.matchOptions.wordOverride = word;
+    return this;
+  }
+
   /**
    * Specifies whether to use lemma matching or exact word matching.
    *
@@ -130,7 +138,7 @@ class WordRule extends Rule {
    *
    * @param syntaxTree
    */
-  match(syntaxTree: SyntaxTree): Array<SyntaxTreeBranch> {
+  match(syntaxTree: SyntaxTree): RuleMatch {
     const matches = [];
     for (let i = 0; i < syntaxTree.branches.length; i++) {
       const branch = syntaxTree.branches[i];
@@ -162,7 +170,7 @@ class WordRule extends Rule {
           branch.children.forEach((child) => {
             const bonsai = new SyntaxTree(null, null);
             bonsai.branches.push(child);
-            if (modifier.match(bonsai)) {
+            if (modifier.match(bonsai).matched) {
               foundModifiers++;
             }
           });
@@ -187,11 +195,7 @@ class WordRule extends Rule {
       matches.push(branch);
     }
 
-    if (matches.length > 0) {
-      return matches;
-    } else {
-      return null;
-    }
+    return new RuleMatch(matches.length > 0, matches, this.matchOptions);
   }
 
   clone(): WordRule {

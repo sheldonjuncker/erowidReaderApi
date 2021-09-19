@@ -1,6 +1,7 @@
 import Rule from './Rule';
 import SyntaxTree from '../SyntaxTree';
-import SyntaxTreeBranch from '../SyntaxTreeBranch';
+import RuleMatch from './RuleMatch';
+import RuleMatchOptions from './RuleMatchOptions';
 /**
  * Accepts a list of rules and applies them to the branches in sequence until
  * it finds a match.
@@ -10,6 +11,7 @@ import SyntaxTreeBranch from '../SyntaxTreeBranch';
 class WordListRule extends Rule {
   public rules: Array<Rule> = [];
   protected depth: number = 0;
+  protected matchOptions: RuleMatchOptions = new RuleMatchOptions();
 
   /**
    * Constructor.
@@ -19,6 +21,11 @@ class WordListRule extends Rule {
   constructor(rules) {
     super();
     this.rules = rules || [];
+  }
+
+  withWordOverride(word: string): WordListRule {
+    this.matchOptions.wordOverride = word;
+    return this;
   }
 
   /**
@@ -32,7 +39,7 @@ class WordListRule extends Rule {
     return this;
   }
 
-  match(syntaxTree: SyntaxTree): Array<SyntaxTreeBranch> {
+  match(syntaxTree: SyntaxTree): RuleMatch {
     const depth = this.depth > 0 ? this.depth : syntaxTree.branches.length;
     //We need to find a sequence of tokens which match all rules
     for (let i = 0; i < depth; i++) {
@@ -47,7 +54,7 @@ class WordListRule extends Rule {
           const rule = this.rules[ruleIndex];
           const bonsai = new SyntaxTree(null, null);
           bonsai.branches.push(branch);
-          if (!rule.match(bonsai)) {
+          if (!rule.match(bonsai).matched) {
             break;
           } else {
             //Add to list or branches that have matched
@@ -55,13 +62,13 @@ class WordListRule extends Rule {
 
             if (ruleIndex === this.rules.length - 1) {
               //We have matched every rule
-              return matchingBranches;
+              return new RuleMatch(true, matchingBranches, this.matchOptions);
             }
           }
         }
       }
     }
-    return null;
+    return new RuleMatch(false, []);
   }
 
   /**
