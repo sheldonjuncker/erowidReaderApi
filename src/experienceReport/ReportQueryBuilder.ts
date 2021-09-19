@@ -4,6 +4,7 @@ import ReportQueryTagger from './ReportQueryTagger';
 import { Tag } from '../syntax/tag/Tag';
 import { substanceEnumMap } from './ReportSubstance';
 import { ReportGender } from './ReportGender';
+import { routeEnumMap } from './ReportAdministrationRoute';
 
 class ReportQueryBuilder {
   async fromText(text: string): Promise<ReportQuery> {
@@ -23,6 +24,14 @@ class ReportQueryBuilder {
       reportQuery,
       tags.filter((tag) => tag.category === 'SUBSTANCE')
     );
+
+    //Route of administration
+    const routeTag = tags.find((tag) => tag.category === 'ROUTE');
+    if (routeTag) {
+      if (routeEnumMap[routeTag.name]) {
+        reportQuery.withRoute(routeEnumMap[routeTag.name]);
+      }
+    }
 
     //Gender
     const genderTag = tags.find((tag) => tag.category === 'GENDER');

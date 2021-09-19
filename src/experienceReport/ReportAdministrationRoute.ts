@@ -16,3 +16,21 @@ export const enum ReportAdministrationRoute {
   VAPED = 14,
   ELECTRODE = 15,
 }
+
+export const routeEnumMap = {
+  oral: ReportAdministrationRoute.ORAL,
+  insufflated: ReportAdministrationRoute.INSUFFLATED,
+  boofed: ReportAdministrationRoute.BOOFED,
+  im: ReportAdministrationRoute.INTRAMUSCULAR,
+  iv: ReportAdministrationRoute.INTRAVENOUS,
+  smoked: ReportAdministrationRoute.SMOKED,
+  inhaled: ReportAdministrationRoute.INHALED,
+  subcutaneous: ReportAdministrationRoute.SUBCUTANEOUS,
+  sublingual: ReportAdministrationRoute.SUBLINGUAL,
+  transdermal: ReportAdministrationRoute.TRANSDERMAL,
+  buccal: ReportAdministrationRoute.BUCCAL,
+  vaginal: ReportAdministrationRoute.VAGINAL,
+  ocular: ReportAdministrationRoute.OCULAR,
+  vaped: ReportAdministrationRoute.VAPED,
+  electrode: ReportAdministrationRoute.ELECTRODE,
+};

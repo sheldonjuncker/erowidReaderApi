@@ -3,7 +3,7 @@ export type TagCategory =
   | 'AGE'
   | 'SUBSTANCE'
   | 'ACTIVITY'
-  | 'ANIMAL'
+  | 'ROUTE'
   | 'THEME'
   | 'DREAMTYPE'
   | 'OTHER'
