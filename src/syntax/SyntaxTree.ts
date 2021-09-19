@@ -4,6 +4,7 @@ import nlp from 'compromise';
 import { entityRules } from './rule/EntityRules';
 import { Tag } from './tag/Tag';
 import { ObjectId } from 'bson';
+import { google } from '@google-cloud/language/build/protos/protos';
 
 /**
  * @class SyntaxTree
@@ -28,7 +29,10 @@ class SyntaxTree {
    * @param syntax
    * @param entities
    */
-  constructor(syntax, entities) {
+  constructor(
+    syntax: google.cloud.language.v1.IAnalyzeSyntaxResponse,
+    entities: google.cloud.language.v1.IEntity[]
+  ) {
     //We might instantiate this directly at times for other purposes.
     if (syntax !== null && entities !== null) {
       const branches = [];
@@ -205,7 +209,11 @@ class SyntaxTree {
    * @param syntax
    * @param entities
    */
-  processPart(part, syntax, entities): SyntaxTreeBranch {
+  processPart(
+    part: google.cloud.language.v1.IToken,
+    syntax: google.cloud.language.v1.IAnalyzeSyntaxResponse,
+    entities: google.cloud.language.v1.IEntity[]
+  ): SyntaxTreeBranch {
     /*console.log('part', part);
     console.log('syntax', syntax);
     console.log('entities', entities);*/
@@ -272,11 +280,12 @@ class SyntaxTree {
 
     const parent = undefined;
     const children = [];
+    // @ts-ignore
     return new SyntaxTreeBranch(
       word,
       originalWord,
       lemma,
-      pos,
+      <string>pos,
       entityType,
       salience,
       parent,

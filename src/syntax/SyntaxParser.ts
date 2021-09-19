@@ -24,14 +24,14 @@ class SyntaxParser {
       },
       encodingType: 'UTF8',
     });
-    const entities = await client.analyzeEntities({
+    const [entities] = await client.analyzeEntities({
       document: {
         content: text,
         type: 'PLAIN_TEXT',
       },
       encodingType: 'UTF8',
     });
-    return new SyntaxTree(syntax, entities);
+    return new SyntaxTree(syntax, entities.entities);
   }
 }
 
