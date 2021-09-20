@@ -144,14 +144,8 @@ class SyntaxTree {
             const ruleMatch = rule.match(bonsai);
             //We have an NER tag
             if (ruleMatch.matched) {
+              const nerWord = ruleMatch.getMatchedWord();
               const nerBranch = ruleMatch.matchedBranches[ruleMatch.matchedBranches.length - 1];
-              let nerWord;
-              if (ruleMatch.options.wordOverride) {
-                console.log('overriding word', ruleMatch.options.wordOverride);
-                nerWord = ruleMatch.options.wordOverride;
-              } else {
-                nerWord = ruleMatch.matchedBranches.map((nerBranch) => nerBranch.lemma).join(' ');
-              }
               //Combine the matched branches into a single tag
               nerBranch.word = nerWord;
               nerBranch.lemma = nerWord;

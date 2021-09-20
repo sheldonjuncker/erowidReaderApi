@@ -18,13 +18,13 @@ class WordListRule extends Rule {
    *
    * @param rules
    */
-  constructor(rules) {
+  constructor(rules: Array<Rule>) {
     super();
     this.rules = rules || [];
   }
 
-  withWordOverride(word: string): WordListRule {
-    this.matchOptions.wordOverride = word;
+  withMatchOverride(callback: (options: RuleMatch) => string): WordListRule {
+    this.matchOptions.overrideCallback = callback;
     return this;
   }
 

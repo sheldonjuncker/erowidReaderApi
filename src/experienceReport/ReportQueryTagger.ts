@@ -9,10 +9,14 @@ class ReportQueryTagger {
   getTags(syntaxTree: SyntaxTree): Array<Tag> {
     const tags: Array<Tag> = syntaxTree.getTags();
     const ruleProcessor = new RuleProcessor(tags, syntaxTree);
-    ruleProcessor.applyRules(substanceRules, false);
-    ruleProcessor.applyRules(administrationRouteRules, false);
-    ruleProcessor.applyRules(genderRules, false);
-    return ruleProcessor.getTags().filter((tag: Tag) => tag.source == 'APP');
+    ruleProcessor.applyRules(substanceRules, true);
+    ruleProcessor.applyRules(administrationRouteRules, true);
+    ruleProcessor.applyRules(genderRules, true);
+    return ruleProcessor
+      .getTags()
+      .filter((tag: Tag) =>
+        ['SUBSTANCE', 'GENDER', 'ROUTE', 'LIMIT', 'ACTIVITY'].includes(tag.category)
+      );
   }
 }
 

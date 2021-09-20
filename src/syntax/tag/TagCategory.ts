@@ -4,7 +4,7 @@ export type TagCategory =
   | 'SUBSTANCE'
   | 'ACTIVITY'
   | 'ROUTE'
-  | 'THEME'
+  | 'LIMIT'
   | 'DREAMTYPE'
   | 'OTHER'
   | 'COLOR'

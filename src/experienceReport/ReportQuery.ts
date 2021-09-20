@@ -11,24 +11,16 @@ class ReportQuery {
   protected title: string;
   protected body: string;
   protected author: string;
-  protected gender: ReportGender = ReportGender.ANY;
+  protected gender: ReportGender = ReportGender.ANY; //check
   protected intensity: ReportIntensityRange;
   protected language: ReportLanguage = ReportLanguage.ENGLISH;
-  protected substance: ReportSubstance = ReportSubstance.ANY;
-  protected combinationOne: ReportSubstance;
-  protected combinationTwo: ReportSubstance;
-  protected dose: ReportDose;
-  protected route: ReportAdministrationRoute = ReportAdministrationRoute.ANY;
+  protected substance: ReportSubstance = ReportSubstance.ANY; //check
+  protected combinationOne: ReportSubstance; //check
+  protected combinationTwo: ReportSubstance; //check
+  protected dose: ReportDose; //not implemented by Erowid search
+  protected route: ReportAdministrationRoute = ReportAdministrationRoute.ANY; //check
   protected activity: ReportActivity;
   protected limit: number = 10;
-  constructor() {}
-
-  async parseFromText(text: string) {
-    const syntaxParser = new SyntaxParser();
-    const syntaxTree = await syntaxParser.parse(text);
-    const tags = syntaxTree.getTags();
-    console.log('tags', tags);
-  }
 
   getTitle(): string {
     return this.title;

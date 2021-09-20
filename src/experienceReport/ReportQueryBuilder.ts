@@ -28,6 +28,7 @@ class ReportQueryBuilder {
     //Route of administration
     const routeTag = tags.find((tag) => tag.category === 'ROUTE');
     if (routeTag) {
+      console.log('route', routeTag);
       if (routeEnumMap[routeTag.name]) {
         reportQuery.withRoute(routeEnumMap[routeTag.name]);
       }
@@ -45,6 +46,12 @@ class ReportQueryBuilder {
       } else if (genderTag.name == 'non_binary') {
         reportQuery.withGender(ReportGender.UNKNOWN);
       }
+    }
+
+    //Limit
+    const limitTag = tags.find((tag) => tag.category === 'LIMIT');
+    if (limitTag) {
+      reportQuery.withLimit(parseInt(limitTag.name));
     }
 
     return reportQuery;

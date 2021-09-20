@@ -107,8 +107,8 @@ class WordRule extends Rule {
     return this;
   }
 
-  withWordOverride(word: string): WordRule {
-    this.matchOptions.wordOverride = word;
+  withMatchOverride(callback: (options: RuleMatch) => string): WordRule {
+    this.matchOptions.overrideCallback = callback;
     return this;
   }
 
@@ -139,6 +139,7 @@ class WordRule extends Rule {
    * @param syntaxTree
    */
   match(syntaxTree: SyntaxTree): RuleMatch {
+    const ruleMatch = new RuleMatch();
     const matches = [];
     for (let i = 0; i < syntaxTree.branches.length; i++) {
       const branch = syntaxTree.branches[i];
@@ -170,7 +171,9 @@ class WordRule extends Rule {
           branch.children.forEach((child) => {
             const bonsai = new SyntaxTree(null, null);
             bonsai.branches.push(child);
-            if (modifier.match(bonsai).matched) {
+            const childMatch = modifier.match(bonsai);
+            if (childMatch.matched) {
+              ruleMatch.childMatches.push(childMatch);
               foundModifiers++;
             }
           });
@@ -195,7 +198,10 @@ class WordRule extends Rule {
       matches.push(branch);
     }
 
-    return new RuleMatch(matches.length > 0, matches, this.matchOptions);
+    ruleMatch.matched = matches.length > 0;
+    ruleMatch.matchedBranches = matches;
+    ruleMatch.options = this.matchOptions;
+    return ruleMatch;
   }
 
   clone(): WordRule {

@@ -1,5 +1,7 @@
+import RuleMatch from './RuleMatch';
+
 class RuleMatchOptions {
-  public wordOverride: string;
+  public overrideCallback: (options: RuleMatch) => string;
 }
 
 export default RuleMatchOptions;
