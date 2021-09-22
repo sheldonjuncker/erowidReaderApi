@@ -13,34 +13,32 @@ class RuleProcessor {
 
   applyRules(ruleMap: RuleMap, removeMatched: boolean) {
     //You don't get to change these guys
-    const excludedCategories = ['THEME', 'DREAMTYPE'];
     ruleMap.getRules().forEach((ruleName) => {
       const matchedTagIds = [];
       const ruleList = ruleMap.getRule(ruleName);
+      let matched = false;
       let count = 0;
       ruleList.forEach((rule) => {
         const ruleMatch = rule.match(this.syntaxTree);
         if (ruleMatch.matched) {
+          matched = true;
           //For each branch (word/tag) matched, go mark it with it's category
           ruleMatch.matchedBranches.forEach((branch) => {
             this.tags.forEach((tag: any) => {
               if (
                 tag.lemma.toLowerCase() === branch.lemma.toLowerCase() &&
-                !excludedCategories.includes(tag.category) &&
                 !matchedTagIds.includes(tag.id)
               ) {
                 matchedTagIds.push(tag.id);
                 count += tag.count;
-                if (!excludedCategories.includes(ruleMap.getCategory())) {
-                  if (removeMatched) {
-                    //Remove the tags that matched (we are replacing with our new tag)
-                    this.tags = this.tags.filter((filteredTag) => filteredTag.id !== tag.id);
-                  } else {
-                    //Keep matched tags but sync their info
-                    tag.category = ruleMap.getCategory();
-                    tag.name = tag.name.toLowerCase();
-                    tag.lemma = tag.lemma.toLowerCase();
-                  }
+                if (removeMatched) {
+                  //Remove the tags that matched (we are replacing with our new tag)
+                  this.tags = this.tags.filter((filteredTag) => filteredTag.id !== tag.id);
+                } else {
+                  //Keep matched tags but sync their info
+                  tag.category = ruleMap.getCategory();
+                  tag.name = tag.name.toLowerCase();
+                  tag.lemma = tag.lemma.toLowerCase();
                 }
               }
             });
@@ -48,13 +46,7 @@ class RuleProcessor {
         }
       });
 
-      if (count > 0) {
-        if (!excludedCategories.includes(ruleMap.getCategory())) {
-          this.tags = this.tags.filter(
-            (tag: any) => tag.name.toLowerCase() !== ruleName.toLowerCase()
-          );
-        }
-
+      if (matched) {
         this.tags.push({
           id: new ObjectId().toHexString(),
           name: ruleName,

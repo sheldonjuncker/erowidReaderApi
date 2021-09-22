@@ -18,6 +18,9 @@ class ReportQueryTagger {
     ruleProcessor.applyRules(languageRules, true);
     ruleProcessor.applyRules(activityRules, true);
     ruleProcessor.applyRules(intensityRules, true);
+
+    console.log('all tags', ruleProcessor.getTags());
+
     return ruleProcessor
       .getTags()
       .filter((tag: Tag) =>

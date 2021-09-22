@@ -13,6 +13,7 @@ class ReportQueryBuilder {
   async fromText(text: string): Promise<ReportQuery> {
     const syntaxParser = new SyntaxParser();
     const syntaxTree = await syntaxParser.parse(text);
+    console.log('branches', syntaxTree.branches);
     const tagger = new ReportQueryTagger();
     const tags = tagger.getTags(syntaxTree);
     console.log('tags', tags);

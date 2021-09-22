@@ -11,7 +11,7 @@ const intensityRulesObject = {
     new WordRule('effect').withModifier(
       new WordRule('noticeable|discernible|present|notice|experience').withNegation(true)
     ),
-    new WordRule('threshold').withModifier(new WordRule('below|under')),
+    new WordRule('below|under').withModifier(new WordRule('threshold')),
     new PhraseRule('plus minus'),
     new PhraseRule('plus or minus'),
   ],
@@ -24,6 +24,7 @@ const intensityRulesObject = {
       new WordRule('or|minus|two|three|four').withInverseMatch(true),
     ]),
     new PhraseRule('plus one'),
+    new WordRule('plus one'),
   ],
   medium: [
     new WordRule('trip|dose|report|experience|effect').withModifier(

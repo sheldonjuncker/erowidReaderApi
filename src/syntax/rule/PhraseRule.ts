@@ -4,7 +4,7 @@ import RuleMatch from './RuleMatch';
 
 class PhraseRule extends Rule {
   public phrase: string;
-  private inverseMatch: boolean;
+  private inverseMatch: boolean = false;
 
   constructor(phrase) {
     super();
@@ -26,12 +26,7 @@ class PhraseRule extends Rule {
   match(syntaxTree: SyntaxTree): RuleMatch {
     const ruleMatch = new RuleMatch();
     const dreamText = syntaxTree.branches.map((branch) => branch.word.toLowerCase()).join(' ');
-    if (dreamText.includes(this.phrase.toLowerCase())) {
-      ruleMatch.matched = true;
-    } else {
-      ruleMatch.matched = false;
-    }
-
+    ruleMatch.matched = dreamText.includes(this.phrase.toLowerCase());
     if (this.inverseMatch) {
       ruleMatch.matched = !ruleMatch.matched;
     }
