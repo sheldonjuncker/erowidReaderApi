@@ -6,6 +6,5 @@ export type TagCategory =
   | 'ROUTE'
   | 'LIMIT'
   | 'LANGUAGE'
-  | 'OTHER'
-  | 'COLOR'
-  | 'NONE';
+  | 'INTENSITY'
+  | 'OTHER';

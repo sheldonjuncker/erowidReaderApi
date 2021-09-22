@@ -7,6 +7,7 @@ import { ReportGender } from './ReportGender';
 import { routeEnumMap } from './ReportAdministrationRoute';
 import { ReportLanguage } from './ReportLanguage';
 import { activityEnumMap } from './ReportActivity';
+import IntensityRange, { ReportIntensity } from './ReportIntensityRange';
 
 class ReportQueryBuilder {
   async fromText(text: string): Promise<ReportQuery> {
@@ -72,6 +73,27 @@ class ReportQueryBuilder {
     const activityTag = tags.find((tag) => tag.category === 'ACTIVITY');
     if (activityTag && activityEnumMap[activityTag.name]) {
       reportQuery.withActivity(activityEnumMap[activityTag.name]);
+    }
+
+    //Intensity
+    const intensityTag = tags.find((tag) => tag.category === 'INTENSITY');
+    if (intensityTag) {
+      let intensity;
+      if (intensityTag.name == 'none') {
+        intensity = ReportIntensity.NO_EFFECT;
+      } else if (intensityTag.name == 'light') {
+        intensity = ReportIntensity.LIGHT;
+      } else if (intensityTag.name == 'medium') {
+        intensity = ReportIntensity.MEDIUM;
+      } else if (intensityTag.name == 'strong') {
+        intensity = ReportIntensity.STRONG;
+      } else if (intensityTag.name == 'extreme') {
+        intensity = ReportIntensity.EXTREME;
+      }
+      if (intensity) {
+        const intensityRange = new IntensityRange(intensity, intensity);
+        reportQuery.withIntensity(intensityRange);
+      }
     }
 
     //Limit

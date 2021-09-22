@@ -55,6 +55,7 @@ class WordRule extends Rule {
   public negation = false;
   public regex: RegExp = null;
   protected matchOptions: RuleMatchOptions = new RuleMatchOptions();
+  private inverseMatch: boolean;
 
   /**
    * Sets the main word to check against.
@@ -134,6 +135,17 @@ class WordRule extends Rule {
   }
 
   /**
+   * Inverts the results of a match so that you can match anything except what the word rule specifies.
+   *
+   * Note: You won't get any branches back from an inverse match as nothing actually matched.
+   * @param inverseMatch
+   */
+  withInverseMatch(inverseMatch: boolean): WordRule {
+    this.inverseMatch = inverseMatch;
+    return this;
+  }
+
+  /**
    * Check to see if the word is found in the syntax tree.
    *
    * @param syntaxTree
@@ -199,7 +211,12 @@ class WordRule extends Rule {
     }
 
     ruleMatch.matched = matches.length > 0;
-    ruleMatch.matchedBranches = matches;
+    if (this.inverseMatch) {
+      ruleMatch.matched = !ruleMatch.matched;
+    }
+    if (ruleMatch.matched) {
+      ruleMatch.matchedBranches = matches;
+    }
     ruleMatch.options = this.matchOptions;
     return ruleMatch;
   }

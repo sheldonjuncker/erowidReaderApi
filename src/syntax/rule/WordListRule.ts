@@ -12,6 +12,7 @@ class WordListRule extends Rule {
   public rules: Array<Rule> = [];
   protected depth: number = 0;
   protected matchOptions: RuleMatchOptions = new RuleMatchOptions();
+  private inverseMatch: boolean;
 
   /**
    * Constructor.
@@ -39,7 +40,19 @@ class WordListRule extends Rule {
     return this;
   }
 
+  /**
+   * Inverts the results of a match so that you can match anything except what the word rule specifies.
+   *
+   * Note: You won't get any branches back from an inverse match as nothing actually matched.
+   * @param inverseMatch
+   */
+  withInverseMatch(inverseMatch: boolean): WordListRule {
+    this.inverseMatch = inverseMatch;
+    return this;
+  }
+
   match(syntaxTree: SyntaxTree): RuleMatch {
+    const ruleMatch = new RuleMatch(false, [], this.matchOptions);
     const depth = this.depth > 0 ? this.depth : syntaxTree.branches.length;
     //We need to find a sequence of tokens which match all rules
     for (let i = 0; i < depth; i++) {
@@ -62,13 +75,18 @@ class WordListRule extends Rule {
 
             if (ruleIndex === this.rules.length - 1) {
               //We have matched every rule
-              return new RuleMatch(true, matchingBranches, this.matchOptions);
+              ruleMatch.matched = true;
+              ruleMatch.matchedBranches = matchingBranches;
+              break;
             }
           }
         }
       }
     }
-    return new RuleMatch(false, []);
+    if (this.inverseMatch) {
+      ruleMatch.matched = !ruleMatch.matched;
+    }
+    return ruleMatch;
   }
 
   /**

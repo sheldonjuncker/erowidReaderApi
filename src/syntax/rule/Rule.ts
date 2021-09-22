@@ -8,6 +8,8 @@ import RuleMatch from './RuleMatch';
  * method to check that a specific SyntaxTree is matched against.
  */
 abstract class Rule {
+  abstract withInverseMatch(inverseMatch: boolean): Rule;
+
   /**
    * Checks to see if the word rule is found in the syntax tree.
    * @param syntaxTree

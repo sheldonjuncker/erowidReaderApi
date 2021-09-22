@@ -1,24 +1,41 @@
 import Rule from './Rule';
 import SyntaxTree from '../SyntaxTree';
-import SyntaxTreeBranch from '../SyntaxTreeBranch';
 import RuleMatch from './RuleMatch';
 
 class PhraseRule extends Rule {
   public phrase: string;
+  private inverseMatch: boolean;
 
   constructor(phrase) {
     super();
     this.phrase = phrase;
   }
 
+  /**
+   * Inverts the results of a match so that you can match anything except what the word rule specifies.
+   *
+   * Note: You won't get any branches back from an inverse match as nothing actually matched.
+   * @param inverseMatch
+   */
+  withInverseMatch(inverseMatch: boolean): PhraseRule {
+    this.inverseMatch = inverseMatch;
+    return this;
+  }
+
   //todo: refactor so that we can return the matched branches
   match(syntaxTree: SyntaxTree): RuleMatch {
+    const ruleMatch = new RuleMatch();
     const dreamText = syntaxTree.branches.map((branch) => branch.word.toLowerCase()).join(' ');
     if (dreamText.includes(this.phrase.toLowerCase())) {
-      return new RuleMatch(true, []);
+      ruleMatch.matched = true;
     } else {
-      return new RuleMatch(false, []);
+      ruleMatch.matched = false;
     }
+
+    if (this.inverseMatch) {
+      ruleMatch.matched = !ruleMatch.matched;
+    }
+    return ruleMatch;
   }
 
   /**
