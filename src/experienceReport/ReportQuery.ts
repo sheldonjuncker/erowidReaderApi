@@ -5,7 +5,6 @@ import { ReportLanguage } from './ReportLanguage';
 import { ReportAdministrationRoute } from './ReportAdministrationRoute';
 import { ReportSubstance } from './ReportSubstance';
 import { ReportActivity } from './ReportActivity';
-import SyntaxParser from '../syntax/SyntaxParser';
 
 class ReportQuery {
   protected title: string;
@@ -13,14 +12,14 @@ class ReportQuery {
   protected author: string;
   protected gender: ReportGender = ReportGender.ANY; //check
   protected intensity: ReportIntensityRange;
-  protected language: ReportLanguage = ReportLanguage.ENGLISH;
+  protected language: ReportLanguage = ReportLanguage.ENGLISH; //check
   protected substance: ReportSubstance = ReportSubstance.ANY; //check
   protected combinationOne: ReportSubstance; //check
   protected combinationTwo: ReportSubstance; //check
   protected dose: ReportDose; //not implemented by Erowid search
   protected route: ReportAdministrationRoute = ReportAdministrationRoute.ANY; //check
-  protected activity: ReportActivity;
-  protected limit: number = 10;
+  protected activity: ReportActivity; //check
+  protected limit: number = 10; //check
 
   getTitle(): string {
     return this.title;

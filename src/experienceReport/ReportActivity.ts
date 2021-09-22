@@ -1,3 +1,5 @@
+import { ReportSubstance } from './ReportSubstance';
+
 export const enum ReportActivity {
   ALPHASTIM100 = 704,
   BREATHING = 470,
@@ -30,3 +32,22 @@ export const enum ReportActivity {
   TRANSCRANIAL_FOCUSED_ULTRASOUND = 884,
   YOGA_BODYWORK = 202,
 }
+
+export const activityEnumMap = {
+  breathing: ReportActivity.BREATHING,
+  chanting: ReportActivity.CHANTING,
+  conferences: ReportActivity.CONFERENCES,
+  dreams: ReportActivity.DREAMS,
+  endogenous: ReportActivity.ENDOGENOUS,
+  families: ReportActivity.FAMILIES,
+  fasting: ReportActivity.FASTING,
+  floatationTanks: ReportActivity.FLOATATION_TANK,
+  meditation: ReportActivity.MEDITATION,
+  music: ReportActivity.MUSIC,
+  obe: ReportActivity.OBE,
+  policeAndCustoms: ReportActivity.POLICE_CUSTOMS,
+  ritual: ReportActivity.RITUAL,
+  sound: ReportActivity.SOUND_NON_MUSIC,
+  sweat: ReportActivity.SWEATING,
+  yoga: ReportActivity.YOGA_BODYWORK,
+};

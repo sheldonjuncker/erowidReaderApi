@@ -5,6 +5,8 @@ import { Tag } from '../syntax/tag/Tag';
 import { substanceEnumMap } from './ReportSubstance';
 import { ReportGender } from './ReportGender';
 import { routeEnumMap } from './ReportAdministrationRoute';
+import { ReportLanguage } from './ReportLanguage';
+import { activityEnumMap } from './ReportActivity';
 
 class ReportQueryBuilder {
   async fromText(text: string): Promise<ReportQuery> {
@@ -46,6 +48,30 @@ class ReportQueryBuilder {
       } else if (genderTag.name == 'non_binary') {
         reportQuery.withGender(ReportGender.UNKNOWN);
       }
+    }
+
+    //Language
+    const languageTag = tags.find((tag) => tag.category === 'LANGUAGE');
+    if (languageTag) {
+      if (languageTag.name == 'english') {
+        reportQuery.withLanguage(ReportLanguage.ENGLISH);
+      } else if (languageTag.name == 'german') {
+        reportQuery.withLanguage(ReportLanguage.GERMAN);
+      } else if (languageTag.name == 'italian') {
+        reportQuery.withLanguage(ReportLanguage.ITALIAN);
+      } else if (languageTag.name == 'french') {
+        reportQuery.withLanguage(ReportLanguage.FRENCH);
+      } else if (languageTag.name == 'spanish') {
+        reportQuery.withLanguage(ReportLanguage.SPANISH);
+      } else if (languageTag.name == 'dutch') {
+        reportQuery.withLanguage(ReportLanguage.DUTCH);
+      }
+    }
+
+    //Activity
+    const activityTag = tags.find((tag) => tag.category === 'ACTIVITY');
+    if (activityTag && activityEnumMap[activityTag.name]) {
+      reportQuery.withActivity(activityEnumMap[activityTag.name]);
     }
 
     //Limit

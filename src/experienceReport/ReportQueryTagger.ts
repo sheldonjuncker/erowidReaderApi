@@ -4,6 +4,8 @@ import RuleProcessor from '../syntax/rule/RuleProcessor';
 import { substanceRules } from '../syntax/categoryRules/SubstanceRules';
 import { genderRules } from '../syntax/categoryRules/GenderRules';
 import { administrationRouteRules } from '../syntax/categoryRules/AdministrationRouteRules';
+import { languageRules } from '../syntax/categoryRules/LanguageRules';
+import { activityRules } from '../syntax/categoryRules/ActivityRules';
 
 class ReportQueryTagger {
   getTags(syntaxTree: SyntaxTree): Array<Tag> {
@@ -12,10 +14,12 @@ class ReportQueryTagger {
     ruleProcessor.applyRules(substanceRules, true);
     ruleProcessor.applyRules(administrationRouteRules, true);
     ruleProcessor.applyRules(genderRules, true);
+    ruleProcessor.applyRules(languageRules, true);
+    ruleProcessor.applyRules(activityRules, true);
     return ruleProcessor
       .getTags()
       .filter((tag: Tag) =>
-        ['SUBSTANCE', 'GENDER', 'ROUTE', 'LIMIT', 'ACTIVITY'].includes(tag.category)
+        ['SUBSTANCE', 'GENDER', 'ROUTE', 'LIMIT', 'ACTIVITY', 'LANGUAGE'].includes(tag.category)
       );
   }
 }

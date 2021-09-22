@@ -5,7 +5,7 @@ export type TagCategory =
   | 'ACTIVITY'
   | 'ROUTE'
   | 'LIMIT'
-  | 'DREAMTYPE'
+  | 'LANGUAGE'
   | 'OTHER'
   | 'COLOR'
   | 'NONE';
