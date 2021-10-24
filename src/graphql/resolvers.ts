@@ -1,10 +1,14 @@
 import ReportQueryBuilder from '../experienceReport/ReportQueryBuilder';
+import ErowidSearch from '../erowidSearch/ErowidSearch';
 
 const resolvers = {
   Query: {
     parseReportQuery: async (_, { text }: { text: string }, __) => {
       const queryBuilder = new ReportQueryBuilder();
-      return queryBuilder.fromText(text);
+      const query = await queryBuilder.fromText(text);
+      const search = new ErowidSearch(query);
+      await search.search(query.getLimit());
+      return query;
     },
   },
 };

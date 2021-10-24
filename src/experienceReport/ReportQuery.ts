@@ -7,11 +7,11 @@ import { ReportSubstance } from './ReportSubstance';
 import { ReportActivity } from './ReportActivity';
 
 class ReportQuery {
-  protected title: string;
-  protected body: string;
-  protected author: string;
+  protected title: string; //not going to implement
+  protected body: string; //not going to implement
+  protected author: string; //not going to implement
   protected gender: ReportGender = ReportGender.ANY; //check
-  protected intensity: ReportIntensityRange;
+  protected intensity: ReportIntensityRange; //check
   protected language: ReportLanguage = ReportLanguage.ENGLISH; //check
   protected substance: ReportSubstance = ReportSubstance.ANY; //check
   protected combinationOne: ReportSubstance; //check
